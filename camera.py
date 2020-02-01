@@ -5,6 +5,7 @@ from time import sleep
 from skimage.measure import structural_similarity as ssim
 import matplotlib.pyplot as plt
 import numpy as np
+import gpiozero
 import cv2
 
 
@@ -43,10 +44,14 @@ def compare_images(imageA, imageB, title):
     # show the images
     plt.show()
 
-
 camera = PiCamera()
 camera.start_preview()
+# change = False
+# #  while not change:
+# for i in range(5):
+#     camera.capture('image%s.py' % i)
 sleep(5)
+
 camera.stop_preview()
 
 
@@ -72,7 +77,7 @@ camera.stop_preview()
 #     ax.set_title(name)
 #     plt.imshow(image, cmap=plt.cm.gray)
 #     plt.axis("off")
-# 
+#
 # # show the figure
 # plt.show()
 #
