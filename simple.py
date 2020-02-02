@@ -4,14 +4,22 @@ import operator
 from picamera import PiCamera
 from time import sleep
 from PIL import Image, ImageChops
+from gpiozero import Motor
 
+def stop_other_functions():
+    motor_conveyor1 = Motor(1, 2)
+    motor_conveyor1.stop()
+    motor_conveyor2 = Motor(3, 4)
+    motor_conveyor2.stop()
+    motor_rotor = Motor(5, 6)
+    motor_rotor.stop()
 
 camera = PiCamera()
 camera.start_preview()
 
 rms = 10000
 
-#  might need to change this threshold later depending on how well 
+#  might need to change this threshold later depending on how well
 #  the camera can distinguish a line of vegetables/targets from
 #  being different vs. an empty conveyor belt
 while rms > 50:
@@ -26,4 +34,5 @@ while rms > 50:
     sleep(3)
 
 camera.stop_preview()
+stop_other_functions()
 
