@@ -1,7 +1,6 @@
 from picamera import PiCamera
 from time import sleep
-import Image
-import ImageChops
+from PIL import Image, ImageChops
 
 
 camera = PiCamera()
