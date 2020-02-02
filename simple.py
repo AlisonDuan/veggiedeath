@@ -15,7 +15,7 @@ for i in range(50):
     sleep(3)
     camera.capture("image2.jpg")
     img2 = Image.open("image2.jpg")
-    diff = ImageChops.difference(Image.open(img1), Image.open(img2)).histogram()
+    diff = ImageChops.difference(img1, img2).histogram()
     rms = math.sqrt(reduce(operator.add, map(lambda diff, i: diff * (i**2), diff, range(256))) / (float(img1.size[0]) * img1.size[1]))
     print("\nDifference: ", rms)
     sleep(3)
