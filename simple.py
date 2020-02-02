@@ -10,6 +10,10 @@ camera = PiCamera()
 camera.start_preview()
 
 rms = 10000
+
+#  might need to change this threshold later depending on how well 
+#  the camera can distinguish a line of vegetables/targets from
+#  being different vs. an empty conveyor belt
 while rms > 50:
     camera.capture("image1.jpg")
     img1 = Image.open("image1.jpg")
