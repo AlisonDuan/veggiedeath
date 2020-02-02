@@ -9,7 +9,8 @@ from PIL import Image, ImageChops
 camera = PiCamera()
 camera.start_preview()
 
-for i in range(50):
+rms = 10000
+while rms > 50:
     camera.capture("image1.jpg")
     img1 = Image.open("image1.jpg")
     sleep(3)
