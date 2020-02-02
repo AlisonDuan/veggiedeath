@@ -4,16 +4,24 @@ import operator
 from picamera import PiCamera
 from time import sleep
 from PIL import Image, ImageChops
-from gpiozero import Motor
+import serial
 
 def stop_other_functions():
-    motor_conveyor1 = Motor(1, 2)
-    motor_conveyor1.stop()
-    motor_conveyor2 = Motor(3, 4)
-    motor_conveyor2.stop()
-    motor_rotor = Motor(5, 6)
-    motor_rotor.stop()
+    ser = serial.Serial('/dev/ttyUSB0', 9600)
+    ser.write(b'1')
 
+# to add to Arduino code:
+# void setup(){
+#   Serial.begin(9600);
+# }
+# void loop(){
+#   if(Serial.available()){         //From RPi to Arduino
+#     if((Serial.read() - '0') = 1){  //conveting the value of chars to integer
+#     Serial.println(Serial.read());
+#     break;
+#    }
+#   }
+# }
 camera = PiCamera()
 camera.start_preview()
 
